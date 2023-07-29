@@ -1,0 +1,96 @@
+   .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  a {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #000;
+    background-color: #f1f1f1;
+    padding: 10px 20px;
+    border-radius: 4px;
+  }
+  
+  .product {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #45a049;
+  }
+  
+  a.pagination-link {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #000;
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  a.pagination-link:hover {
+    background-color: #dcdcdc;
+  }
+  
+  .userProfile {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #405de6; /* Instagram blue color */
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  button.logout {
+    background-color: #e53935; /* Red color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button.logout:hover {
+    background-color: #c62828; /* Darker red color */
+  }
+  
+  

@@ -1,0 +1,26 @@
+<div class="container">
+  <a class="detailButton" href="/cart/{{this.cart._id}}">Ver Carrito</a>
+  <h1>Detalles del producto</h1>
+  <div>
+    <div class="card">
+      <img src="{{product.thumbnails}}" alt="Thumbnail" />
+      <h2>{{product.title}}</h2>
+      <p>{{product.description}}</p>
+      <p class="category">Categoría: {{product.category}}</p>
+      <p class="stock">Stock: {{product.stock}}</p>
+      <p class="price">$ {{product.price}}</p>
+      <label for="quantity">Cantidad:</label>
+      <input
+        type="number"
+        id="quantity"
+        min="1"
+        max="{{product.stock}}"
+        value="1"
+      />
+      <button class="addToCart" data-id="{{product._id}}">Agregar al carrito</button>
+
+    </div>
+  </div>
+</div>
+
+<script src="/js/addProductToCart.js"></script>
