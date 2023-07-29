@@ -5,11 +5,9 @@ const usersCollection = "users";
 const usersSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: true,
   },
   lastName: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -18,11 +16,9 @@ const usersSchema = new mongoose.Schema({
   },
   dateOfBirth: {
     type: Date,
-    required: true,
   },
   password: {
     type: String,
-    required: true,
   },
 });
 

@@ -95,16 +95,17 @@ const initializePassport = () => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
+          console.log({ profile });
           let user = await userService.findOne({ email: profile._json.email });
-          user = { ...user.toObject(), userRole: 'user' };
+          user = { ...user.toObject(), userRole: "user" };
           if (user) return done(null, user);
-          const newUser = {
+          user = {
             firstName: profile._json.name,
             lastName: "",
             email: profile._json.email,
             password: "",
           };
-          user = await userService.create(newUser);
+          user = await userService.create(user);
           return done(null, user);
         } catch (error) {
           return done({ message: "Error en el login con Github" });

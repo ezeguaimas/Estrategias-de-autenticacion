@@ -109,7 +109,7 @@ router.get(
 router.get(
   "/githubcallback",
   passport.authenticate("github", {
-    failureRedirect: "/api/sessions/githubfail",
+    failureRedirect: "/api/sessions/login",
   }),
   async (req, res) => {
     req.session.user = {
@@ -120,5 +120,4 @@ router.get(
     res.redirect("/products");
   }
 );
-
 export default router;
