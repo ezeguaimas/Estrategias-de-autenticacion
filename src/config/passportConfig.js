@@ -40,17 +40,39 @@ const initializePassport = () => {
   passport.use(
     "login",
     new LocalStrategy(
-      { usernameField: "email" },
-      async (username, password, done) => {
+      {
+        usernameField: "email",
+        passReqToCallback: true,
+      },
+      async (req, username, password, done) => {
         try {
-          const user = await userService.findOne({ email: username });
-          if (!user)
-            return done(null, false, { message: "Usuario no encontrado" });
-          if (!isValidPassword(user, password))
-            return done(null, false, { message: "Contraseña incorrecta" });
-          return done(null, user);
+          let user;
+          if (username.toLowerCase() === ADMIN_USER.toLowerCase()) {
+            if (password !== ADMIN_PASSWORD) {
+              return done(null, false, { msg: "La contraseña es incorrecta" });
+            }
+            user = {
+              firstName: "Admin",
+              lastName: "Coder",
+              email: ADMIN_USER,
+              dateOfBirth: "",
+              userRole: "admin",
+            };
+          } else {
+            user = await userService.findOne({
+              email: { $regex: new RegExp(`^${username}$`, "i") },
+            });
+            if (!user) {
+              return done(null, false, { msg: "Usuario no encontrado" });
+            }
+            if (!isValidPassword(user, password)) {
+              return done(null, false, { msg: "La contraseña es incorrecta" });
+            }
+            user = { ...user.toObject(), userRole: "user" };
+            return done(null, user);
+          }
         } catch (error) {
-          return done({ message: "Error iniciando sesión" });
+          return done({ msg: "Error iniciando sesión" });
         }
       }
     )
@@ -97,15 +119,16 @@ const initializePassport = () => {
         try {
           console.log({ profile });
           let user = await userService.findOne({ email: profile._json.email });
+          if (!user) {
+            user = {
+              firstName: profile._json.name,
+              lastName: "",
+              email: profile._json.email,
+              password: "",
+            };
+            user = await userService.create(user);
+          }
           user = { ...user.toObject(), userRole: "user" };
-          if (user) return done(null, user);
-          user = {
-            firstName: profile._json.name,
-            lastName: "",
-            email: profile._json.email,
-            password: "",
-          };
-          user = await userService.create(user);
           return done(null, user);
         } catch (error) {
           return done({ message: "Error en el login con Github" });

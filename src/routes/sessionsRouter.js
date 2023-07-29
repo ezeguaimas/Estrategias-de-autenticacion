@@ -33,7 +33,7 @@ router.post("/login", async (req, res) => {
     if (!email || !password)
       return res
         .status(400)
-        .send({ status: "error", error: "Complete todos los campos " });
+        .send({ status: "error", msg: "Complete todos los campos " });
     let user;
     if (email.toLowerCase() === ADMIN_USER.toLowerCase()) {
       if (password !== ADMIN_PASS) {
@@ -61,7 +61,7 @@ router.post("/login", async (req, res) => {
       if (!isValidPassword(user, password))
         return res
           .status(403)
-          .send({ status: "error", error: "La contraseña es incorrecta" });
+          .send({ status: "error", msg: "La contraseña es incorrecta" });
       delete user.password;
       user = { ...user.toObject(), userRole: "user" };
     }
